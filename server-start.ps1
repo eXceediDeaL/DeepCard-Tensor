@@ -4,7 +4,10 @@ if ($args.Count -eq 0) {
 else {
     switch ($args[0]) {
         "api" {
-            dotnet run -p ./src/DeepCard.API
+            cd ./src/DeepCard.API ; python server.py
+        },
+        "api.demo" {
+            dotnet run -p ./src/DeepCard.API.Demo
         }
         "host" {
             dotnet run -p ./src/DeepCard.Host
