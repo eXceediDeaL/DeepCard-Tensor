@@ -27,6 +27,6 @@ cd ./src/DeepCard.API ; python server.py
 dotnet run -p ./src/DeepCard.Host
 ```
 
-Then visit the URL `http://localhost:60000`. You can see the website.
+Then visit the URL `http://localhost:5000`. You can see the website.
 
-> **Hints**: If you want to debug host without real OCR, start the demo API server with command: `dotnet run -p ./src/DeepCard.API.Demo`
+> **Hints**: If you want to debug host without real OCR, start the demo API server with command: `dotnet run -p ./src/DeepCard.API.Demo --urls="http://localhost:4000"`

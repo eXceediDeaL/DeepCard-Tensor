@@ -11,13 +11,14 @@ namespace DeepCard
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "12.1.0.0 (NJsonSchema v9.13.28.0 (Newtonsoft.Json v11.0.0.0))")]
     public partial class RecognitionClient 
     {
-        private string _baseUrl = "http://localhost:5000";
+        private string _baseUrl = "http://localhost:4000";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
     
         public RecognitionClient(System.Net.Http.HttpClient httpClient)
         {
             _httpClient = httpClient; 
+            _httpClient.Timeout = new System.TimeSpan(0, 0, 10, 0);
             _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => 
             {
                 var settings = new Newtonsoft.Json.JsonSerializerSettings();

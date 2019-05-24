@@ -37,11 +37,11 @@ def application(environ, start_response):
     except:
         res = "Error"
 
-    print(request_body, res)
+    print("Result:", res)
 
     start_response('200 OK', [('Content-Type', 'application/json')])
     return [json.dumps(res).encode("utf-8")]
 
-httpd = make_server('', 5000, application)
-print('Serving HTTP on port 5000...')
+httpd = make_server('', 4000, application)
+print('Serving HTTP on port 4000...')
 httpd.serve_forever()

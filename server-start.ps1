@@ -7,7 +7,7 @@ else {
             cd ./src/DeepCard.API ; python server.py
         },
         "api.demo" {
-            dotnet run -p ./src/DeepCard.API.Demo
+            dotnet run -p ./src/DeepCard.API.Demo --urls="http://localhost:4000"
         }
         "host" {
             dotnet run -p ./src/DeepCard.Host
