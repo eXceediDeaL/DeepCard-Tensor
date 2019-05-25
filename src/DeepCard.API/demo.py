@@ -1,17 +1,26 @@
-#-*- coding:utf-8 -*-
-import os
-import ocr2 as ocr
-import time
-import shutil
-import numpy as np
+from wsgiref.simple_server import make_server
+import traceback
+import base64
+from io import BytesIO
 from PIL import Image
+import json
 from glob import glob
+import os
+import shutil
 
-def single_pic_proc(image_file):
-    image = np.array(Image.open(image_file).convert('RGB'))
-    result, image_framed = ocr.model(image)
-    return result,image_framed
-
+def get_result(img):
+    import ocr2 as ocr
+    import numpy as np
+    image = np.array(img.convert('RGB'))
+    result, _ = ocr.model(image)
+    res = ""
+    for key in result:
+        cs = result[key][1]
+        if not cs.isdigit():
+            continue
+        if len(cs) > len(res):
+            res = cs
+    return res
 
 if __name__ == '__main__':
     image_files = glob('./test_images/*.*')
@@ -20,18 +29,16 @@ if __name__ == '__main__':
         shutil.rmtree(result_dir)
     os.mkdir(result_dir)
 
+    txt_file = os.path.join(result_dir, 'result.txt')
+    txt_f = open(txt_file, 'w')
+
     for image_file in sorted(image_files):
-        t = time.time()
-        result, image_framed = single_pic_proc(image_file)
-        output_file = os.path.join(result_dir, image_file.split('/')[-1])
-        txt_file = os.path.join(result_dir, image_file.split('/')[-1].split('.')[0]+'.txt')
-        print(txt_file)
-        txt_f = open(txt_file, 'w')
-        Image.fromarray(image_framed).save(output_file)
-        print("Mission complete, it took {:.3f}s".format(time.time() - t))
-        print("\nRecognition Result:\n")
-        for key in result:
-            print(result[key][1])
-            txt_f.write(result[key][1]+'\n')
-        txt_f.close()
+        if ".gitkeep" in image_files:
+            continue
+        print("Finded file", image_file, end=" ")
+        result = get_result(Image.open(image_file))
+        print(":", result)
+        txt_f.write(image_file.split('/')[-1].split('.')[0] + ':' + result + '\n')
+    
+    txt_f.close()
 

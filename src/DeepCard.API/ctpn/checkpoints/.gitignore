@@ -1,2 +1,4 @@
-VGG*
 checkpoint
+VGGnet_fast_rcnn_iter_50000.ckpt.data-00000-of-00001
+VGGnet_fast_rcnn_iter_50000.ckpt.index
+VGGnet_fast_rcnn_iter_50000.ckpt.meta

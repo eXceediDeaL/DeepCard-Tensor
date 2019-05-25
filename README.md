@@ -1,10 +1,10 @@
 # DeepCard
 
-![](https://img.shields.io/badge/platform-linux-blue.svg) ![](https://img.shields.io/github/license/StardustDL/DeepCard.svg) ![](https://img.shields.io/github/repo-size/StardustDL/DeepCard.svg) ![](https://img.shields.io/librariesio/github/StardustDL/DeepCard.svg)
-
-![](https://img.shields.io/docker/pulls/stardustdl/deepcard.svg)
+![](https://img.shields.io/badge/platform-linux-blue.svg) ![](https://img.shields.io/github/license/StardustDL/DeepCard.svg) ![](https://img.shields.io/github/repo-size/StardustDL/DeepCard.svg) ![](https://img.shields.io/librariesio/github/StardustDL/DeepCard.svg) ![](https://img.shields.io/docker/pulls/stardustdl/deepcard.svg)
 
 A bank card number recognition system based on deep-learning.
+
+![](docs/preview.png)
 
 # Usage
 
@@ -65,6 +65,15 @@ chmod +x ./run.sh
 
 3. Visit URL `http://localhost:8000` to see DeepCard website.
 
+4. If you want to batch images, copy your images into `./src/DeepCard.API/test_images` and use these commands:
+
+```sh
+cd ./src/DeepCard.API
+python3 ./demo.py
+```
+
+The results will be at `./src/DeepCard.API/test_result/result.txt`, each line contains a file name and its recognization result.
+
 # Development
 
 Use different shells to run these command, because they need long-run.
@@ -92,5 +101,16 @@ Then visit the URL `http://localhost:5000`. You can see the website.
 1. Python
 2. OpenCV
 3. Tensorflow
-4. Pytorch
-5. .NET Core 2.2. (See [here](https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current) to install it on Linux.)
+4. Keras
+5. Pytorch
+6. .NET Core 2.2
+
+# Reference
+
+- [chinese_ocr](https://github.com/YCG09/chinese_ocr)
+
+# Collaborators
+
+- [@courao](https://github.com/courao)
+- [@mitdalao](https://github.com/mitdalao)
+- [@GreatTMZ](https://github.com/GreatTMZ)
