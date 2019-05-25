@@ -1,4 +1,5 @@
 from wsgiref.simple_server import make_server
+import traceback
 import base64
 from io import BytesIO
 from PIL import Image
@@ -32,16 +33,20 @@ def application(environ, start_response):
 
     try:
         request_body = environ['wsgi.input'].read(request_body_size)
+        # print(request_body)
         img = base64_to_image(request_body)
         res = get_result(img)
-    except:
+    except Exception as e:
         res = "Error"
+        print(e)
+        traceback.print_exc()
 
     print("Result:", res)
 
     start_response('200 OK', [('Content-Type', 'application/json')])
     return [json.dumps(res).encode("utf-8")]
 
-httpd = make_server('', 4000, application)
-print('Serving HTTP on port 4000...')
-httpd.serve_forever()
+if __name__ == '__main__':
+    httpd = make_server('', 4000, application)
+    print('Server running...')
+    httpd.serve_forever()
