@@ -2,6 +2,22 @@
 
 A bank card number recognition system based on deep-learning.
 
+# Usage
+
+1. Build docker image:
+
+```sh
+docker build -t deepcard:cpu -f ./docker/cpu/Dockerfile .
+```
+
+2. Start docker container (will use more than 3GB memory):
+
+```sh
+docker run --it --rm -p 8000:80 --name dc deepcard:cpu
+```
+
+3. Visit URL `http://localhost:8000` to see DeepCard website.
+
 # Dependences
 
 1. Python
@@ -9,7 +25,7 @@ A bank card number recognition system based on deep-learning.
 3. Pytorch
 4. .NET Core 2.2. (See [here](https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current) to install it on Linux.)
 
-# Usage
+# Development
 
 Use different shells to run these command, because they need long-run.
 

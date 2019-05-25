@@ -33,6 +33,8 @@ if __name__ == '__main__':
     txt_f = open(txt_file, 'w')
 
     for image_file in sorted(image_files):
+        if ".gitkeep" in image_files:
+            continue
         result = get_result(Image.open(image_file))
         txt_f.write(image_file.split('/')[-1].split('.')[0] + ':' + result + '\n')
     
