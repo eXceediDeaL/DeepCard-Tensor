@@ -10,7 +10,7 @@ else {
             dotnet run -p ./src/DeepCard.API.Demo --urls="http://localhost:4000"
         }
         "host" {
-            dotnet run -p ./src/DeepCard.Host
+            dotnet run -p ./src/DeepCard.Host --urls="http://localhost:8000"
         }
         default {
             Write-Output "The type is not found."

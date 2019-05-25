@@ -4,7 +4,7 @@ COPY ./docker/apt-sources /etc/apt/sources.list
 
 RUN mkdir /src && apt clean && apt update --fix-missing && apt install -y python3 python3-pip libsm6 libxrender1 libxext-dev && \
     rm -rf /var/lib/apt/lists/* && \
-    pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U
+    pip3 install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U
 
 # COPY ./src/DeepCard.Host /src/gui
 COPY ./src/DeepCard.Host/bin/Release/netcoreapp2.2/linux-x64/publish /src/gui
